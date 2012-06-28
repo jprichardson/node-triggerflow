@@ -1,6 +1,47 @@
 tutil = require('testutil')
-next = require('../lib/nextflow')
+{TriggerFlow} = require('../lib/triggerflow')
 util = require('util')
 fs = require('fs-extra')
 path = require('path-extra')
 
+describe 'TriggerFlow', ->
+  it 'should fire the event when the conditions are met', (done) ->
+    processing = 0
+    tf = TriggerFlow.create done: false, processing: processing, ->
+      done()
+
+    setTimeout(-> 
+      tf.update(done: true)
+    ,5)
+
+    again = ->
+      processing += 1
+      tf.update(processing: processing)
+      setTimeout(->
+        processing -= 1
+        tf.update(processing: processing)
+      ,10)
+    again()
+
+  it 'should fire the event when the conditions are met and retrieve the expected parameters', (done) ->
+    ARBITRARY_STRING = 'hello'
+    ARBITRATY_NUM = 29
+
+    processing = 0
+    tf = TriggerFlow.create done: false, processing: processing, (someNum, someString) ->
+      T someNum is ARBITRATY_NUM
+      T someString is ARBITRARY_STRING
+      done()
+
+    setTimeout(-> 
+      tf.update(done: true)
+    ,5)
+
+    again = ->
+      processing += 1
+      tf.update(processing: processing, ARBITRATY_NUM, ARBITRARY_STRING)
+      setTimeout(->
+        processing -= 1
+        tf.update(processing: processing, ARBITRATY_NUM, ARBITRARY_STRING)
+      ,10)
+    again()
