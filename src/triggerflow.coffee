@@ -7,7 +7,13 @@ class TriggerFlow
     for key,val of partialObject
       #console.log "pobj: #{key},#{val}"
       if partialObject.hasOwnProperty(key)
-        @object[key] = val
+        if typeof val is 'number'
+          if val < 0 #should just decrement
+            @object[key] = @object[key] + val
+          else
+            @object[key] = val
+        else
+          @object[key] = val
 
     allTrue = true
     for key,val of @object

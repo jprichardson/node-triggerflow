@@ -3,7 +3,7 @@ Node.js - TriggerFlow
 
 A simple library used to conditionally trigger methods.
 
-Get off my lawn.
+Unstable API right now. Checkout the tests for examples.
 
 MIT Licensed
 

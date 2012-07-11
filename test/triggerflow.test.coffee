@@ -45,3 +45,27 @@ describe 'TriggerFlow', ->
         tf.update(processing: processing, ARBITRATY_NUM, ARBITRARY_STRING)
       ,10)
     again()
+
+  it 'should count down and fire the event when the conditions are met', (done) ->
+    counter = 10
+    tf = TriggerFlow.create counter: counter, ->
+      T counter is 0
+      clearInterval(decrementer)
+      done()
+
+    decrementer = setInterval(->
+      counter -= 1
+      tf.update counter: counter
+    ,5)
+
+  it 'should automatically count down if the number is negative and then fire the event when the conditions are met', (done) ->
+    tf = TriggerFlow.create counter: 10, ->
+      T tf.object.counter is 0
+      clearInterval(decrementer)
+      done()
+
+    decrementer = setInterval(->
+      tf.update counter: -1
+    ,5)
+
+
