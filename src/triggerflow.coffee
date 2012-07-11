@@ -1,7 +1,8 @@
 class TriggerFlow
   constructor: ->
     @callback = ->
-    @object = {}  
+    @object = {}
+    @hasTriggered = false  
 
   update: (partialObject) =>
     for key,val of partialObject
@@ -27,6 +28,7 @@ class TriggerFlow
           #console.log 'not all true'
           return
     #if we're here, they're allTrue
+    @hasTriggered = true
     args = []
     Array.prototype.push.apply(args, arguments)
     args.shift() #cut partialObject out

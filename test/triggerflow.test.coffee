@@ -8,6 +8,7 @@ describe 'TriggerFlow', ->
   it 'should fire the event when the conditions are met', (done) ->
     processing = 0
     tf = TriggerFlow.create done: false, processing: processing, ->
+      T tf.hasTriggered
       done()
 
     setTimeout(-> 
@@ -31,6 +32,7 @@ describe 'TriggerFlow', ->
     tf = TriggerFlow.create done: false, processing: processing, (someNum, someString) ->
       T someNum is ARBITRATY_NUM
       T someString is ARBITRARY_STRING
+      T tf.hasTriggered
       done()
 
     setTimeout(-> 
@@ -51,6 +53,7 @@ describe 'TriggerFlow', ->
     tf = TriggerFlow.create counter: counter, ->
       T counter is 0
       clearInterval(decrementer)
+      T tf.hasTriggered
       done()
 
     decrementer = setInterval(->
@@ -62,6 +65,7 @@ describe 'TriggerFlow', ->
     tf = TriggerFlow.create counter: 10, ->
       T tf.object.counter is 0
       clearInterval(decrementer)
+      T tf.hasTriggered
       done()
 
     decrementer = setInterval(->
