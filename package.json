@@ -2,7 +2,7 @@
   "author": "JP Richardson <jprichardson@gmail.com>",
   "name": "triggerflow",
   "description": "A simple library used to conditionally trigger methods.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/jprichardson/node-triggerflow",
   "keywords": ["trigger", "conditional", "condition", "conditions", "triggers", "event", "events"],
   "repository": {
