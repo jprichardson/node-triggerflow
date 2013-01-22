@@ -38,7 +38,7 @@ Revisiting the previous example, you can solve this problem quite easily with a 
 
 In `triggerflow`, base conditions are when a `boolean` is `true` and when a `number` is `0`.
 
-Example:
+**Example:**
 
 ```javascript
 var trigger = require('triggerflow');
@@ -50,7 +50,7 @@ walk('~/data')
 .on('file', function(file) {
   processing += 1;
   tf.update({processing: processing});
-  processFile(function() { //hypothetical async file process function
+  processFile(file, function() { //hypothetical async file process function
     processing -= 1;
     tf.update({processing: processing});
   })
