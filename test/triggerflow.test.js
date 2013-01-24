@@ -2,7 +2,6 @@ var tutil = require('testutil')
   , TriggerFlow = require('../lib/triggerflow').TriggerFlow
   , trigger = require('../lib/triggerflow')
   , util = require('util')
-  , fs = require('fs-extra')
 
 
 describe('TriggerFlow', function() {

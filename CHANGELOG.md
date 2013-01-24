@@ -1,3 +1,9 @@
+0.1.0 / 2013-01-23
+------------------
+* Removed CoffeeScript.
+* Added README.
+* Exported `trigger` function as well as `TriggerFlow` object.
+
 0.0.3 / 2012-07-11
 ------------------
 * Added `hasTriggered` field to determine if trigger function has fired. 
